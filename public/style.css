@@ -1,0 +1,176 @@
+.baris{
+    box-sizing: border-box;
+            padding: 20px;
+  }
+  .kolom{
+    width: 50%;
+    height: 400px;
+    box-sizing: border-box;
+            padding: 10px;
+  }
+  .kolom1,
+  .kolom2{
+    float: left;
+  }
+
+  img{
+    width: 105%;
+    height: 100%;
+    border-radius: 20px;
+  }
+
+  .flex-containere{
+display: flex;
+clear: left; /* mengubah ke mode flexbox */
+flex-wrap: wrap; /* mengatur item flexbox dapat diwrap/apabila container tidak cukup lagi untuk membungkus item, maka item akan diturunkan */ 
+flex-direction: row; /* Mengatur arah item ke row/satu baris */
+justify-content: center; /* mensejajarkan item selalu di tengah dalam satu baris */
+padding: 20px 5px;
+
+}   
+
+.items{
+  border-radius: 10px;
+width: 222px;
+padding: 20px;
+text-align: center;
+height: 80px;
+background-color: #ffb923;
+margin: 3px;
+box-sizing: border-box;
+flex-grow:1; /* mengatur setiap item flexbox dapat melebar 1 bagian dari total item*/
+flex-shrink: 1; /* mengatur setiap item flexbox dapat menciut 1 bagian dari total item*/
+}
+
+.button1,input[type=submit]{
+font-family: sans-serif;
+font-size: 15px;
+background : orange;
+color: white;
+border-radius: 5px;
+padding: 12px;
+bottom: 30px;
+position: relative;
+margin-top: 12px;
+border-radius: 20px;
+float: right;
+text-decoration: none;
+}
+
+@media (max-width: 789px){
+.kolom{
+    width: 100%;
+    height: auto;
+}
+}
+
+
+.form-container{
+  padding: 1px 6px;
+}
+
+.card{
+  width: 50%;
+  height: auto;
+  float: left;
+}
+
+.form-card{
+  margin-bottom: 4px;
+  background-color: aliceblue;
+  border-radius: 20px;
+}
+
+form{
+  padding: 30px;
+}
+
+.input-card{
+  display: flex;
+  flex-direction: column;
+}
+
+label{
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+input, textarea{
+  /* jarak dalam input dan textarea */
+  padding: 5px 15px;
+  /* sizetex etika isi input */
+  font-size: 14px;
+  /* ilangin faris yang di input dan textarea */
+  outline: none;
+  /* yang di ulangin di ubah */
+  border: 1px solid #333;
+  /* lengkung ujung inpt dan textarea */
+  border-radius: 5px;
+}
+
+button{
+  float: right;
+  background-color: #ffb923;
+  padding: 8px 20px;
+  border-radius: 20px;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+footer {
+  clear: both;
+  text-align: center;
+  background-color: #ffdf98;
+  padding: 15px;
+  font-size: 14px;
+  margin-top: 40px;
+}
+
+.article {
+  border: 1px solid #000;
+  padding: 10px;
+  padding-left: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.article p {
+  text-align: right;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3 0px;
+}
+
+.content .text {
+  max-width: 70%;
+  margin-right: 15px;
+}
+
+.content img {
+  width: 180px;
+  max-width: 100%;
+}
+
+@media (max-width: 550px) {
+  .content {
+      flex-direction: column;
+  }
+
+  .content img {
+      float: right;
+      margin-top: 10px;
+  }
+
+  .content .text {
+      font-size: 0.8rem;
+  }
+
+  .content img {
+      width: 150px;
+  }
+}
