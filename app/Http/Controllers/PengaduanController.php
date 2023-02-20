@@ -16,7 +16,9 @@ class PengaduanController extends Controller
     public function index()
     {
         //untuk menampilkan halam landingpage
-        $datas = Pengaduan::all();
+        // orderBy untuk urutkan data 
+        //pigination utnuk menmpilakn kolom yang bisa di next
+        $datas = Pengaduan::orderBy('created_at', 'DESC')->simplePaginate(2);
         return view('landingPage', compact('datas'));
     }
 
@@ -26,7 +28,8 @@ class PengaduanController extends Controller
     }
 
     public function dashboardAdmin(){
-        $data = Pengaduan::all();
+        // untuk mengurutkan data yang terbaru itu menggunakan orderby 
+        $data = Pengaduan::orderBy('created_at', 'DESC')->get();
         // compact untuk mengkirim data ke file blade
         //untuk menampilkan halam dahboard admin
         return view('dashboardAdmin', compact('data'));
@@ -49,6 +52,8 @@ class PengaduanController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     //request untuk mengabil data dari inputan 
     public function store(Request $request)
     {
         // untuk validate data agar data yang di isi tisak asal-asalan
@@ -64,7 +69,7 @@ class PengaduanController extends Controller
         //ambil file yang siupload di input yang name nya foto
         $image = $request->file('foto');
         // ubah nama file jadi random.extensi
-        $imgName = rand() . '.' . $image->extension();
+        $imgName = rand() . '.' . $image->extension(); // 
         // panggil folder tempat simpen gambarnya 
         $path = public_path('assets/image/');
         // pindahin gambar yang di upload dan udah di rename ke folder tadi 
@@ -79,7 +84,7 @@ class PengaduanController extends Controller
             'foto' => $imgName,
         ]);
 
-        return redirect('')->with('succesAdd', "Berhasil Menambah Data");
+        return redirect('')->with('succesAdd', "Berhasil Menambah Data Pengaduan Baru!");
     }
 
     /**
@@ -112,11 +117,17 @@ class PengaduanController extends Controller
      * @param  \App\Models\Pengaduan  $pengaduan
      * @return \Illuminate\Http\Response
      */
-    public function delete(Pengaduan $pengaduan, $id)
+    public function delete($id)
     {
+        // $image::find($request->id);
         // untuk memfilter data mana yang akan di ambil untuk di delete
-        Pengaduan::where('id', $id)->delete();
+
+        // hapus data foto dari folder public : path nama foto nya 
+        //nama foto yang diambil dari $data yang diatas terus mengambil dari colum fot
+        $data= Pengaduan::where('id', $id)->firstOrFail();
         // untuk mengarahkan ke mana route setelah delete
+        unlink('assets/image/'. $data->foto);
+        $data->delete();
         return redirect()->back()->with('SuccesDel', "Berhasil Menghapus Data ");
     }
 
@@ -134,7 +145,7 @@ class PengaduanController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect('/')->with('succeslog', "Berhasil Logout");
+        return redirect('/')->with('berhasil', "Berhasil Logout");
     }
     
    

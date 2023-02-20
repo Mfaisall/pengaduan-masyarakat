@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    {{-- <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet"> --}}
+    <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="dashboard.css">
 </head>
 
@@ -13,7 +14,9 @@
     <h1 style="text-align: center;">Laporan Keluhan</h1>
 
     <div class="buttons" style="text-align: center">
-        <a class="button button1" href="/logout">Logout</a>
+        <a class="button button1" href="/logout">Logout</a>||
+        <a class="button button2" href="/">Home</a>
+        <p style="color: black">{{  Auth::User()->nama_lengkap}}</p>
     </div>
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

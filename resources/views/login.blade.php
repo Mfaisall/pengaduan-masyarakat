@@ -10,24 +10,35 @@
 </head>
 
 <body>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    @if (session('errors'))
+    <script>
+        swal({
+            title: "",
+            text: "Gagal Login Silahkan Coba Lagi Dan cek Email dan Password!",
+            icon: "error",
+        });
+    </script>
+@endif
+
     <section class="form-container">
         <div class="card form-card">
-    <form action="{{ route('auth') }}" method="POST">
-        @csrf
-            <h2 style="text-align: center;">Login Administrator</h2>
-            <div class="input-card">
-                <strong>Email :</strong>
-                <br>
-                <input type="text" class="from-control" name="email">
-            </div>
-            <div class="input-card">
-                <strong>Password :</strong>
-                <br>
-                <input type="password" class="from-control" name="password">
-            </div>
+            <form action="{{ route('auth') }}" method="POST">
+                @csrf
+                <h2 style="text-align: center;">Login Administrator</h2>
+                <div class="input-card">
+                    <strong>Email :</strong>
+                    <br>
+                    <input type="text" class="from-control" name="email">
+                </div>
+                <div class="input-card">
+                    <strong>Password :</strong>
+                    <br>
+                    <input type="password" class="from-control" name="password">
+                </div>
                 <button type="submit">Kirim</button>
                 <a class="button2" href="/">Back</a>
-    </form>
+            </form>
 
 </body>
 

@@ -12,17 +12,14 @@
 
 <body>
 
+    {{-- untuk menapilkan error validasi  --}}
 
-    @if ($errors->any())
-        {{-- <div class="alert alert-danger"> --}}
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+
+    {{-- @if (Session::get('gagal'))
+        <div style="width: 100%; background: green; padding: 10px;">
+            {{ Session::get('gagal') }}
         </div>
-    @endif
-
+    @endif --}}
 
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @if (session('succesAdd'))
@@ -34,20 +31,39 @@
             });
         </script>
     @endif
-    @if (session('succeslog'))
+    @if (session('berhasil'))
+        <script>
+            swal({
+                title: "",
+                text: "Berhasil Logout!",
+                icon: "success",
+            });
+        </script>
+    @endif
+    @if (session('gagal'))
     <script>
         swal({
             title: "",
-            text: "Berhasil Logout!",
-            icon: "success",
+            text: "Silahkan Login Terlebih Dahulu!",
+            icon: "error",
         });
     </script>
 @endif
 
+<header>
+    @if(Auth::check())
+    <a href="{{ route('dashboard') }}"  class="button1">Lihat Data</a>
+    @else
+    <a href="{{ route('login') }}" class="button1">Administrator</a>
+    @endif
+
+
+</header>
+
 
 
     <section class="baris">
-        <a href="/login" class="button1">Administrator</a>
+        {{-- <a href="/login" class="button1">Administrator</a> --}}
         <div class="kolom kolom1">
             <ol>
                 <h2>Pengaduan Masyarakat</h2>
@@ -72,6 +88,14 @@
             <form action="/tambah-data" method="POST" enctype="multipart/form-data">
                 @csrf
                 <h2 style="text-align: center;">Buat Pengaduan</h2>
+
+                @if ($errors->any())
+                    <ul style="width: 100%; background:red; padding:10px;">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                @endif
                 <div class="input-card">
                     <label>Nik :</label>
                     <input type="text" class="form-control" name="nik" id="nik" placeholder="NIK">
@@ -101,23 +125,30 @@
         <h3 style="text-align:center;">Laporan Pengaduan</h3>
 
 
-        @foreach($datas as $items)
-
-        <div class="card laporan-card">
-            <div class="article">
-                <p>{{ now()}} | {{ $items->nama_lengkap }}</p>
-                <div class="content">
-                    <div class="text">
-                        {{ $items->pengaduan }}
-                    </div>
-                    <div>
-                        <img src="{{ asset('assets/image/'. $items->foto) }}" alt="">
+        @foreach ($datas as $items)
+            <div class="card laporan-card">
+                <div class="article">
+                    <p>{{ \Carbon\Carbon::parse($items->created_at)->format('j F, Y') }}| {{ $items->nama_lengkap }}</p>
+                    <div class="content">
+                        <div class="text">
+                            {{ $items->pengaduan }}
+                        </div>
+                        <div>
+                            <img src="{{ asset('assets/image/' . $items->foto) }}" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
+        @endforeach
+
+        <div style="display: flex; justify-content: flex-end; margin-top: 75vh; posisition:relative;">
+            {!! $datas->links() !!}
         </div>
+
     </section>
-    @endforeach
+
+
+
 
     <br></br>
 

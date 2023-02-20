@@ -19,7 +19,13 @@ use Whoops\Run;
 Route::get('/',[PengaduanController::class, 'index'])->name('index');
 Route::get('/login', [PengaduanController::class, 'login'])->name('login');
 Route::post('/auth', [PengaduanController::class, 'auth'])->name('auth');
-Route::get('/dashboard.admin', [PengaduanController::class, 'dashboardAdmin'])->name('dashboard');
 Route::post('/tambah-data', [PengaduanController::class, 'store'])->name('tambahdata');
-Route::delete('/delete/{id}', [PengaduanController::class, 'delete'])->name('delete');
 Route::get('/logout', [PengaduanController::class, 'logout'])->name('logout');
+
+
+Route::middleware('IsLogin')->group(function (){
+    Route::delete('/delete/{id}', [PengaduanController::class, 'delete'])->name('delete');
+    Route::get('/dashboard.admin', [PengaduanController::class, 'dashboardAdmin'])->name('dashboard');
+});
+
+
