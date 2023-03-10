@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href={{ asset('assets/css/style.css') }}>
     <title>Document</title>
-
 </head>
 
 <body>
@@ -41,24 +40,26 @@
         </script>
     @endif
     @if (session('gagal'))
-    <script>
-        swal({
-            title: "",
-            text: "Silahkan Login Terlebih Dahulu!",
-            icon: "error",
-        });
-    </script>
-@endif
-
-<header>
-    @if(Auth::check())
-    <a href="{{ route('dashboard') }}"  class="button1">Lihat Data</a>
-    @else
-    <a href="{{ route('login') }}" class="button1">Administrator</a>
+        <script>
+            swal({
+                title: "",
+                text: "Silahkan Login Terlebih Dahulu!",
+                icon: "error",
+            });
+        </script>
     @endif
 
-
-</header>
+    <header>
+        @if (Auth::check())
+            @if (Auth::User()->role == 'admin')
+                <a href="{{ route('dashboard.admin') }} " class="button1">Lihat Data</a>
+            @elseif(Auth::User()->role == 'petugas')
+                <a href="{{ route('data.Petugas') }}" class="button1">Lihat Data</a>
+            @endif
+        @else
+            <a href="{{ route('login') }}" class="button1">Administrator</a>
+        @endif
+    </header>
 
 
 
@@ -141,7 +142,7 @@
             </div>
         @endforeach
 
-        <div style="display: flex; justify-content: flex-end; margin-top: 75vh; posisition:relative;">
+        <div style="display: flex; justify-content: flex-end; margin-top: 99vh; posisition:relative;">
             {!! $datas->links() !!}
         </div>
 

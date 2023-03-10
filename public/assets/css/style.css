@@ -179,3 +179,14 @@ footer {
       width: 150px;
   }
 }
+
+.form-control2{
+  width: 30%;
+}
+.form-control3{
+  width: 33%;
+}
+
+.buttonkirim{
+  float: left;
+}

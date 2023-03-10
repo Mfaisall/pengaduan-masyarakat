@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Respon;
+
 
 class Pengaduan extends Model
 {
@@ -18,4 +20,13 @@ class Pengaduan extends Model
         'pengaduan',
         'foto',
     ];
+
+    //hasOne : one to one 
+    // table yang berperan sebagai PK
+    // nama fungsi == nama modek FK
+    public function respon()
+    {
+        return $this->hasOne
+        (Respon::class);
+    }
 }

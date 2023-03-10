@@ -16,7 +16,7 @@
 }
  
 .table1, th, td {
-    padding: 8px 30px;
+    padding: 8px 10px;
     text-align: center;
 }
 
@@ -30,7 +30,7 @@
 }
 
 .card-text{
-      width:50%;
+      width:30%;
       word-break: break-word;
       text-align: start;
 }
@@ -55,4 +55,16 @@ button{
     text-decoration: none;
     padding: 5px;
     color: black;
+}
+
+.back-btn{
+    background-color: orange;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 5px;
+    color: black;
+}
+
+.lain{
+    width: 20%;
 }

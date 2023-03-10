@@ -13,13 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('respons', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
-            $table->enum('role', ['admin','petugas']);
-            $table->rememberToken();
+            // tipe data foreign key disamakan dengan tipe data primary key nya 
+            // namany diambil dari nama tabletanpas_primarykey 
+            $table->bigInteger('pengaduan_id');
+            $table->enum('status', ['ditolak', 'diterima', 'proses']);
+            $table->text('pesan');
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('respons');
     }
 };

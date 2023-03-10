@@ -12,14 +12,14 @@
 <body>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     @if (session('errors'))
-    <script>
-        swal({
-            title: "",
-            text: "Gagal Login Silahkan Coba Lagi Dan cek Email dan Password!",
-            icon: "error",
-        });
-    </script>
-@endif
+        <script>
+            swal({
+                title: "",
+                text: "Gagal Login Silahkan Coba Lagi Dan cek Email dan Password!",
+                icon: "error",
+            });
+        </script>
+    @endif
 
     <section class="form-container">
         <div class="card form-card">
